@@ -1,0 +1,42 @@
+@media screen and (min-width: 768px) {
+    .hero-section{
+        background-image: url('../src/assets/images/hero.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 500px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-section {
+        background-image: url('../src/assets/images/hero.jpg');
+        background-position: top;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 400px;
+    }
+
+    .hero-section div{
+        width: 320px;
+    }
+    .hero-section div:first-child{
+        top: 50px !important;
+        left: 10px !important;
+    }
+
+    .discover div:first-child{
+        font-size: 17px;
+    }
+
+    .discover div:first-child p{
+        font-size: 15px;
+    }
+
+    .discover div:first-child div:last-child button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom:5px ;
+    }
+}
