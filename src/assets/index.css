@@ -1,7 +1,7 @@
 @media screen and (min-width: 768px) {
     .hero-section{
         background-image: url('../src/assets/images/hero.jpg');
-        background-position: center;
+        background-position: right;
         background-size: cover;
         background-repeat: no-repeat;
         height: 500px;
@@ -38,5 +38,9 @@
         padding-right: 10px;
         padding-top: 5px;
         padding-bottom:5px ;
+    }
+
+    .cost {
+        gap: 3rem !important;
     }
 }
