@@ -7,6 +7,7 @@ import { useRoutes } from 'react-router-dom'
 import About from './views/about'
 import Header from "./components/header";
 import './assets/index.css'
+import Footer from './components/footer'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -26,6 +27,7 @@ function App() {
       <div>
         <Header name="LaptopTote"/>
         {Routes}
+        <Footer name="LaptopTote"/>
       </div>
     </>
   )
