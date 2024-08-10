@@ -4,10 +4,11 @@ import './App.css'
 import 'flowbite'
 import Home from './views/home'
 import { useRoutes } from 'react-router-dom'
-import About from './views/about'
+import Help from './views/help'
 import Header from "./components/header";
 import './assets/index.css'
 import Footer from './components/footer'
+import Login from './views/login'
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -17,8 +18,12 @@ function App() {
       element: <Home/>
     },
     {
-      path: '/about',
-      element: <About/>
+      path: '/help-center',
+      element: <Help/>
+    },
+    {
+      path: '/login',
+      element: <Login/>
     }
   ])
 
