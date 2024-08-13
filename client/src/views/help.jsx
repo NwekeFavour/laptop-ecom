@@ -22,10 +22,10 @@ const help = () => {
                 <div className="max-w-sm lg:my-0 my-3 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-gray-700">
                     <Order/>
                     <a href="#">
-                        <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-black capitalize">Want to place an order?
+                        <h5 className="mb-2 text-2xl font-semibold tracking-tight text-black capitalize">Want to place an order?
                         </h5>
                     </a>
-                    <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
+                    <p className="mb-3 font-normal text-gray-400">Go to this step by step guideline process on how to certify for your weekly benefits:</p>
                     <a href="#" className="inline-flex font-medium items-center text-blue-600 hover:underline">
                         See our guideline
                         <svg className="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
