@@ -67,27 +67,27 @@ function Register() {
             <section className="bg-gray-900">
                 <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
                     <div className="flex flex-col justify-center">
-                        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Welcome to Laptop Haven</h1>
-                        <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Discover Your Perfect Laptop High-Performance, Sleek Designs, Unbeatable Prices Shop Now</p>
+                        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none  md:text-5xl lg:text-6xl text-white">Welcome to Laptop Haven</h1>
+                        <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl ">Discover Your Perfect Laptop High-Performance, Sleek Designs, Unbeatable Prices Shop Now</p>
                         <a href="#" className="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Read more about our services
                             <svg className="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                             </svg>
                         </a>
                     </div>
-                    <div className='w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800'>
+                    <div className='w-full lg:max-w-xl p-6 space-y-8 sm:p-8 rounded-lg shadow-xl bg-gray-800'>
                         <div>
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            <h2 className="text-2xl font-bold text-white">
                             Register
                             </h2>
                         </div>
                         <form onSubmit={handleRegister} className="max-w-md mx-auto">
                             <div>
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                                <label className="block mb-2 text-sm font-medium text-white">Your email</label>
                                 <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
                             <div className="mb-5">
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                <label className="block mb-2 text-sm font-medium text-white">
                                     Your username
                                 </label>
                                 <input
@@ -101,7 +101,7 @@ function Register() {
                                 />
                             </div>
                             <div className="mb-5">
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                <label className="block mb-2 text-sm font-medium text-white">
                                     Your password
                                 </label>
                                 <input
@@ -114,7 +114,7 @@ function Register() {
                                 />
                             </div>
                             <div className="mb-5">
-                                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                <label className="block mb-2 text-sm font-medium text-white">
                                     Repeat password
                                 </label>
                                 <input
@@ -136,7 +136,7 @@ function Register() {
                                         required
                                     />
                                 </div>
-                                <label className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <label className="ms-2 text-sm font-medium text-gray-300">
                                     I agree with the{' '}
                                     <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">
                                     terms and conditions
@@ -151,7 +151,7 @@ function Register() {
                             >
                                 Register new account
                             </button>
-                            <div className="text-sm font-medium text-gray-900 dark:text-white">
+                            <div className="text-sm font-medium text-white">
                                 Already registered? <Link to={'/login'} className="text-blue-600 hover:underline dark:text-blue-500 cursor-pointer">Login to your account</Link>
                             </div>
                         </form>
