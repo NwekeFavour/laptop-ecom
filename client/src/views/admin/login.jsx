@@ -34,7 +34,7 @@ function Login() {
             }
 
             // Successful login
-            console.log('Login successful:', data);
+            // console.log('Login successful:', data);
             localStorage.setItem('token', data.token);
             // Redirect or perform additional actions on success
             // window.location.href = '/dashboard';

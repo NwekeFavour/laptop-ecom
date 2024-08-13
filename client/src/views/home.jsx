@@ -71,7 +71,7 @@ const home = () => {
                     {/* <!-- Carousel wrapper --> */}
                     <div className="relative md:m-0 m-4  h-56 overflow-hidden rounded-lg md:h-96">
                         {/* <!-- Item 1 --> */}
-                        <div className="hidden duration-700 ease-in-out" data-carousel-item>
+                        <div className=" duration-700 ease-in-out" data-carousel-item>
                             <img src={ dell } className="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt=""/>
                         </div>
                         {/* <!-- Item 2 --> */}
