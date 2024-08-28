@@ -1,11 +1,7 @@
 /* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx}",
-    "node_modules/flowbite/**/*.{js,jsx}"
-  ],
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {},
   },
@@ -13,4 +9,3 @@ export default {
     require('flowbite/plugin')
   ],
 }
-

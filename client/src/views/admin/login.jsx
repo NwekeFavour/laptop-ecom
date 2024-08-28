@@ -1,13 +1,15 @@
 /* eslint-disable no-unused-vars */
-import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [message, setMessage] = useState('')
 
+    // use for aftermath navigation
+    // const navigate = useNavigate()
     const sendData = async (e) => {
         e.preventDefault()
 
@@ -24,10 +26,9 @@ function Login() {
                 },
                 body: JSON.stringify({ username, password })
             });
-
             // Convert the response to JSON
             const data = await response.json();
-
+            
             // Check for non-OK status
             if (!response.ok) {
                 throw new Error(data.message || 'Invalid Credentials');
@@ -38,13 +39,14 @@ function Login() {
             localStorage.setItem('token', data.token);
             // Redirect or perform additional actions on success
             // window.location.href = '/dashboard';
+            setMessage(data.message)
+            // navigate('/')
         } catch (error) {
             console.error('Login error:', error);
             console.error("error occurred while login in to your account")
         }
 
-  };
-
+    };
     return (
         <div>
             <section className="bg-gray-900">
@@ -75,7 +77,7 @@ function Login() {
                                         type="text"
                                         id="username"
                                         className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                        placeholder="name@flowbite.com"
+                                        placeholder="name12@"
                                         required
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
@@ -83,7 +85,7 @@ function Login() {
                                 </div>
                                 <div>
                                     <label className="block mb-2 text-sm font-medium text-white">Your password</label>
-                                        <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                                    <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required value={password} onChange={(e) => setPassword(e.target.value)} />
                                 </div>
                                 <div className="flex items-start">
                                     <div className="flex items-center h-5">
@@ -93,12 +95,15 @@ function Login() {
                                         <label className="font-medium text-gray-500 dark:text-gray-400">Remember this device</label>
                                     </div>
                                     <a href="#" className="ms-auto text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Lost Password?</a>
-                                </div>
+                                </div>                                
                                 <button type="submit" className="w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
                                 <div className="text-sm font-medium text-white">
                                     Not registered yet? <Link to={'/register'} className="text-blue-600 hover:underline dark:text-blue-500 cursor-pointer">Create account</Link>
                                 </div>
-                            </form>
+                            </form>   
+                            <span className={`${message == '' ? 'hidden' : 'block'} bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300`}>
+                                { message }
+                            </span>
                         </div>
                     </div>
                 </div>

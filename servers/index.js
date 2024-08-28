@@ -13,7 +13,7 @@ const jwtSecret = process.env.JWTSECRET;
 
 const connectDB = async () => {
 
-    try {
+    try {  
         mongoose.set('strictQuery', false);
         const connect = await mongoose.connect(process.env.MONGODB_URI);
         console.log(`database is connected sucessfully: ${connect.connection.host}`);
@@ -35,8 +35,8 @@ app.get('/', (req, res) => {
 // Handle all other routes by serving the React app
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-});
-
+});      
+       
 app.use(cors());
 app.use(express.json());
 app.post('/register', async (req, res) => {
@@ -69,9 +69,9 @@ app.post('/register', async (req, res) => {
         } else {
             console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
-        }
-    }
-});
+        }   
+    }  
+});  
 app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -95,7 +95,8 @@ app.post('/login', async (req, res) => {
         // Generate JWT token or other login success actions here
         const token = "JWT_TOKEN_PLACEHOLDER"; // Generate your JWT here
 
-        res.status(200).json({ message: 'Login successful', token });
+        res.status(200).json({ 
+            message: 'Login successful', token });
     } catch (error) {
         console.error('Login error:', error); // Log the actual error
         res.status(500).json({ message: 'Internal Server Error' });

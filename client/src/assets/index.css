@@ -8,6 +8,8 @@
     }
 }
 
+
+
 @media screen and (max-width: 768px) {
     .cost {
         gap: 3rem !important;
@@ -16,5 +18,12 @@
         background-color: #111827;
         height: 200px;
         width: 100%;
+    }
+    .input[type='text']{
+        border-width: 0px !important;
+    }
+    .input[type='text']:focus{
+        outline: orange !important;
+        box-shadow: none !important;
     }
 }
