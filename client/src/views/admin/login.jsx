@@ -18,8 +18,10 @@ function Login() {
         const payload =  Object.fromEntries(data)
         console.log(payload)
 
+        const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5173'; // Fallback for local development
+
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+            const response = await fetch(`${API_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
