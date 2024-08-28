@@ -11,6 +11,7 @@ const bcrypt = require('bcryptjs')
 const PORT = process.env.PORT || 5173;
 const jwtSecret = process.env.JWTSECRET;
 
+
 const connectDB = async () => {
 
     try {  
@@ -37,7 +38,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });      
        
-app.use(cors());
+app.use(cors({origin: 'https://laptop-ecom.vercel.app/'}));
 app.use(express.json());
 app.post('/register', async (req, res) => {
     try {
