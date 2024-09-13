@@ -18,7 +18,7 @@ function Login() {
         const payload =  Object.fromEntries(data)
         console.log(payload)
 
-        const API_URL = process.env.REACT_APP_API_URL || 'https://laptop-ecom-979v.vercel.app/'; // Fallback for local development
+        const API_URL = process.env.REACT_APP_API_URL || 'https://laptop-ecom-979v.vercel.app'; // Fallback for local development
 
         try {
             const response = await fetch(`${API_URL}/login`, {
