@@ -36,9 +36,19 @@ app.get('/', (req, res) => {
 // Handle all other routes by serving the React app
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-});      
+});
+
+
+
+const corsOptions = {
+    origin: 'https://laptop-ecom.vercel.app', // Specify your frontend domain here
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow the HTTP methods you need
+    credentials: true, // If you are using credentials like cookies
+    allowedHeaders: ['Content-Type', 'Authorization'], // Specify the allowed headers
+  };
+  
        
-app.use(cors({origin: 'https://laptop-ecom.vercel.app'}));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.post('/register', async (req, res) => {
     try {
