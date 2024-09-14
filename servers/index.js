@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 const User = require('./models/auth')
 const bcrypt = require('bcryptjs')
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5173;
 const jwtSecret = process.env.JWTSECRET;
 
 
@@ -36,22 +36,17 @@ app.get('/', (req, res) => {
 // Handle all other routes by serving the React app
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-});
-
-app.use(cors({
-    origin: 'https://laptop-ecom.vercel.app' 
-}));
-
-
-const corsOptions = {
-    origin: 'https://laptop-ecom.vercel.app', // Specify your frontend domain here
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allow the HTTP methods you need
-    credentials: true, // If you are using credentials like cookies
-    allowedHeaders: ['Content-Type', 'Authorization'], // Specify the allowed headers
-  };
-  
+});      
        
-app.use(cors(corsOptions));
+const corsOptions = {
+    origin: 'https://laptop-ecom.vercel.app', 
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  };
+
+app.options('*', cors(corsOptions)); 
+
 app.use(express.json());
 app.post('/register', async (req, res) => {
     try {
