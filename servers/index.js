@@ -11,6 +11,12 @@ const bcrypt = require('bcryptjs')
 const PORT = process.env.PORT || 5173;
 const jwtSecret = process.env.JWTSECRET;
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://laptop-ecom.vercel.app'); 
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+  });
 
 const connectDB = async () => {
 
@@ -38,12 +44,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });      
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://laptop-ecom.vercel.app'); // Replace with your actual origin
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-  });
+
        
 // const corsOptions = {
 //     origin: 'https://laptop-ecom.vercel.app',
