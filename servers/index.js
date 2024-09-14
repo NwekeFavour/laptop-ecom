@@ -1,16 +1,17 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken')
-const User = require('./models/auth')
-const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken');
+const User = require('./models/auth');
+const bcrypt = require('bcryptjs');
 
 const PORT = process.env.PORT || 5173;
 const jwtSecret = process.env.JWTSECRET;
 
+// CORS configuration
 const corsOptions = {
     origin: 'https://laptop-ecom.vercel.app', // Allow requests from this origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -22,19 +23,17 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // Handle preflight requests
 
-
 const connectDB = async () => {
-
-    try {  
+    try {
         mongoose.set('strictQuery', false);
         const connect = await mongoose.connect(process.env.MONGODB_URI);
-        console.log(`database is connected sucessfully: ${connect.connection.host}`);
+        console.log(`Database is connected successfully: ${connect.connection.host}`);
     } catch (e) {
         console.error(e);
     }
-}     
-    
-app.use(express.static('public'));
+}
+
+app.use(express.json());
 
 // Serve static files from the React app's build directory
 app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -47,27 +46,13 @@ app.get('/', (req, res) => {
 // Handle all other routes by serving the React app
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-});      
+});
 
-
-       
-// const corsOptions = {
-//     origin: 'https://laptop-ecom.vercel.app',
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     credentials: true, // Allow cookies to be sent
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-// };
-
-// // Use CORS middleware
-// app.use(cors(corsOptions));
-
-app.use(express.json());
 app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-
-          // Check if all fields are provided
+        // Check if all fields are provided
         if (!username || !email || !password) {
             return res.status(400).json({ message: 'All fields are required' });
         }
@@ -77,7 +62,6 @@ app.post('/register', async (req, res) => {
         if (!emailRegex.test(email)) {
             return res.status(400).json({ message: 'Invalid email format' });
         }
-
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -92,9 +76,10 @@ app.post('/register', async (req, res) => {
         } else {
             console.error(error);
             res.status(500).json({ message: 'Internal Server Error' });
-        }   
-    }  
-});  
+        }
+    }
+});
+
 app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -115,50 +100,17 @@ app.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid Credentials' });
         }
 
-        // Generate JWT token or other login success actions here
-        const token = "JWT_TOKEN_PLACEHOLDER"; // Generate your JWT here
+        // Generate JWT token
+        const token = jwt.sign({ userID: user._id }, jwtSecret, { expiresIn: '1h' });
+        res.cookie('token', token, { httpOnly: true });
 
-        res.status(200).json({ 
-            message: 'Login successful', token });
+        res.status(200).json({ message: 'Login successful', token });
+
     } catch (error) {
-        console.error('Login error:', error); // Log the actual error
+        console.error('Login error:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
-
-
-
-// app.post('/login', async (req, res) => {
-//     try {
-//         const { username, password } = req.body;
-        
-//         // Test for user existence
-//         const user = await User.findOne({ username });
-        
-//         if (!user) {
-//             return res.status(401).json({ message: 'invalid credentials' });
-//         }
-
-//         // Compare the entered password with the stored hashed password
-//         const isPasswordValid = await bcrypt.compare(password, user.password);
-
-//         if (!isPasswordValid) {        
-//             return res.status(401).json({ message: 'Invalid Credentials' });
- 
-//         }
- 
-//         // Generate a JWT token
-//         const token = jwt.sign({ userID: user._id }, jwtSecret, {expiresIn: '1h'});
-//         res.cookie('token', token, { httpOnly: true });
-
-//         // Redirect to home page
-//         // res.status(200).json({ success: true, redirectUrl: '/dashboard' });
-//     } catch (e) {
-//         console.error(e);
-//         res.status(500).json({ message: 'An error occurred' });
-//     }
-// });
-
 
 connectDB()
 
