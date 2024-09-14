@@ -38,6 +38,9 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
 
+app.use(cors({
+    origin: 'https://laptop-ecom.vercel.app' 
+}));
 
 
 const corsOptions = {
