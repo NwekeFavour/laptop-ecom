@@ -39,13 +39,14 @@ app.get('*', (req, res) => {
 });      
        
 const corsOptions = {
-    origin: 'https://laptop-ecom.vercel.app', 
+    origin: 'https://laptop-ecom.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
+    credentials: true, // Allow cookies to be sent
     allowedHeaders: ['Content-Type', 'Authorization'],
-  };
+};
 
-app.options('*', cors(corsOptions)); 
+// Use CORS middleware
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.post('/register', async (req, res) => {
