@@ -20,12 +20,12 @@ const jwtSecret = process.env.JWTSECRET;
 // };
 
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://laptop-ecom.vercel.app'); // Allow all origins (or specify specific origins)
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Allow specific HTTP methods
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow specific headers
-    next();
-  });
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173'); // Allow all origins (or specify specific origins)
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Allow specific HTTP methods
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow specific headers
+//     next();
+//   });
 
 // Use CORS middleware
 // app.use(cors(corsOptions));
@@ -45,6 +45,10 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../client/dist/')));
 
+
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'This is an API response' });
+});
 
 // Handle the '/' route on the server by serving index.html
 app.get('/', (req, res) => {
