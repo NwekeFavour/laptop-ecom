@@ -18,7 +18,7 @@ function Login() {
         const payload =  Object.fromEntries(data)
         console.log(payload)
 
-        const API_URL = process.env.REACT_APP_API_URL || 'https://laptop-ecom-979v.vercel.app';
+        const API_URL = process.env.REACT_APP_API_URL || 'http://laptop-ecom-979v.vercel.app';
 
         try {
             const response = await fetch(`${API_URL}/login`, {
