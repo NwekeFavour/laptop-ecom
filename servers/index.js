@@ -11,13 +11,13 @@ const bcrypt = require('bcryptjs');
 const PORT = process.env.PORT || 5173;
 const jwtSecret = process.env.JWTSECRET;
 
-// // CORS configuration
-// const corsOptions = {
-//     origin: 'https://laptop-ecom.vercel.app', // Allow requests from this origin
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     credentials: true, // Allow cookies to be sent
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-// };
+// CORS configuration
+const corsOptions = {
+    origin: 'https://laptop-ecom.vercel.app', // Allow requests from this origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Allow cookies to be sent
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
 
 // app.use((req, res, next) => {
@@ -28,8 +28,8 @@ const jwtSecret = process.env.JWTSECRET;
 //   });
 
 // Use CORS middleware
-// app.use(cors(corsOptions));
-// app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 const connectDB = async () => {
     try {
@@ -60,7 +60,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/', 'index.html'));
 });
 
-app.post('/api/register', async (req, res) => {
+app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
@@ -90,9 +90,9 @@ app.post('/api/register', async (req, res) => {
             res.status(500).json({ message: 'Internal Server Error' });
         }
     }
-});
+});   
 
-app.post('/api/login', async (req, res) => {
+app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
 
