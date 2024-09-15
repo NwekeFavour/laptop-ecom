@@ -21,7 +21,7 @@ const corsOptions = {
 
 // Use CORS middleware
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Handle preflight requests
+app.options('*', cors(corsOptions));
 
 const connectDB = async () => {
     try {
