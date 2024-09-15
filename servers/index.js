@@ -35,8 +35,8 @@ const connectDB = async () => {
 
 app.use(express.json());
 
-// Serve static files from the React app's build directory
 app.use(express.static(path.join(__dirname, '../client/dist')));
+
 
 // Handle the '/' route on the server by serving index.html
 app.get('/', (req, res) => {

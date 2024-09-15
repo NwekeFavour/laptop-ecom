@@ -19,7 +19,7 @@ function Register() {
     }
 
     try {
-        const response = await fetch('http://localhost:5173/register', {
+        const response = await fetch('http://laptop-ecom-m7ox.vercel.app/register', {
             method: "POST",
             crossDomain: true,
             headers: {
