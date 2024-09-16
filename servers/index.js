@@ -43,6 +43,9 @@ const connectDB = async () => {
 
 app.use(express.json());
 
+res.setHeader('Content-Type', 'application/javascript');
+
+
 app.use(express.static(path.join(__dirname, '../client/dist/')));
 
 
