@@ -43,7 +43,6 @@ const connectDB = async () => {
 
 app.use(express.json());
 
-res.setHeader('Content-Type', 'application/javascript');
 
 
 app.use(express.static(path.join(__dirname, '../client/dist/')));
@@ -56,6 +55,8 @@ app.get('/api/data', (req, res) => {
 // Handle the '/' route on the server by serving index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/', 'index.html'));
+    res.setHeader('Content-Type', 'application/javascript');
+
 });
  
 // Handle all other routes by serving the React app
