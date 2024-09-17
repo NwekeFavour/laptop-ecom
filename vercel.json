@@ -1,9 +1,23 @@
 {
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/servers/$1" }
-  ],
+  "version": 2,
   "builds": [
-    { "src": "client/package.json", "use": "@vercel/static-build", "config": { "distDir": "client/dist" } },
-    { "src": "servers/index.js", "use": "@vercel/node" }
+    {
+      "src": "servers/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "client/dist/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/servers/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/client/dist/$1"
+    }
   ]
 }
