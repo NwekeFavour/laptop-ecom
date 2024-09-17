@@ -8,8 +8,6 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/auth');
 const bcrypt = require('bcryptjs');
 
-const PORT = process.env.PORT || 5173;
-const jwtSecret = process.env.JWTSECRET;
 
 // CORS configuration
 const corsOptions = {
@@ -19,21 +17,14 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
-app.use(cors({
-    origin: 'https://laptop-ecom.vercel.app'
-  }));
-
-
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173'); // Allow all origins (or specify specific origins)
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Allow specific HTTP methods
-//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow specific headers
-//     next();
-//   });
-
-// Use CORS middleware
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+
+
+const PORT = process.env.PORT || 5173;
+const jwtSecret = process.env.JWTSECRET;
+
+
+
 
 const connectDB = async () => {
     try {
