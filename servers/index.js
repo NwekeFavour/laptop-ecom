@@ -8,24 +8,22 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/auth');
 const bcrypt = require('bcryptjs');
 
-
 // CORS configuration
 const corsOptions = {
     origin: 'https://laptop-ecom.vercel.app', // Allow requests from this origin
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true, // Allow cookies to be sent
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
-app.use(cors(corsOptions))
-app.options('*', cors(corsOptions));
+// Apply CORS middleware globally
+app.use(cors(corsOptions));
 
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 const PORT = process.env.PORT || 5173;
 const jwtSecret = process.env.JWTSECRET;
-
-
-
 
 const connectDB = async () => {
     try {
@@ -38,20 +36,15 @@ const connectDB = async () => {
 }
 
 app.use(express.json());
-
-
-
 app.use(express.static(path.join(__dirname, '../client/dist/')));
 
-
 app.get('/api/data', (req, res) => {
-  res.json({ message: 'This is an API response' });
+    res.json({ message: 'This is an API response' });
 });
 
 // Handle the '/' route on the server by serving index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/', 'index.html'));
-    
 });
  
 // Handle all other routes by serving the React app
@@ -123,7 +116,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-connectDB()
+connectDB();
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
