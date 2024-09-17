@@ -7,6 +7,14 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const User = require('./models/auth');
 const bcrypt = require('bcryptjs');
+const {createProxy}= require('http-proxy-middleware')
+
+
+app.use('/api', createProxyMiddleware({
+    target: 'https://laptop-ecom-dsd2.vercel.app',
+    changeOrigin: true,
+    pathRewrite: { '^/api': '' },
+  }));
 
 // CORS configuration
 const corsOptions = {
