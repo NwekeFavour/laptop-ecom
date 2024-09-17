@@ -10,7 +10,7 @@ const bcrypt = require('bcryptjs');
 const {createProxy}= require('http-proxy-middleware')
 
 
-app.use('/api', createProxyMiddleware({
+app.use('/api', createProxy({
     target: 'https://laptop-ecom-dsd2.vercel.app',
     changeOrigin: true,
     pathRewrite: { '^/api': '' },
