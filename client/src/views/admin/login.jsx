@@ -21,7 +21,7 @@ function Login() {
         // const API_URL = process.env.REACT_APP_API_URL || '';
 
         try {
-            const response = await fetch(`/login`, {
+            const response = await fetch(`https://laptop-ecom-yfz7.vercel.app/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

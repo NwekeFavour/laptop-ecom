@@ -19,7 +19,7 @@ function Register() {
     }
 
     try {
-        const response = await fetch('https://laptop-ecom-dsd2.vercel.app/register', {
+        const response = await fetch('https://laptop-ecom-yfz7.vercel.app/register', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
