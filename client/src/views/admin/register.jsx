@@ -29,7 +29,8 @@ function Register() {
                 username,
                 email,
                 password
-            })
+            }),
+            credentials: 'include'
         });
 
         const responseText = await response.text();

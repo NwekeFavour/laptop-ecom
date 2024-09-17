@@ -17,6 +17,10 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
+app.use(cors(corsOptions))
+app.options('*', cors(corsOptions));
+
+
 const PORT = process.env.PORT || 5173;
 const jwtSecret = process.env.JWTSECRET;
 
@@ -55,7 +59,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/', 'index.html'));
 });
 
-app.post('/register', cors(corsOptions), async (req, res) => {
+app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
