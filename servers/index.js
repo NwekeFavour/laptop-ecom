@@ -64,7 +64,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/', 'index.html'));
 });
 
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
