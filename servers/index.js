@@ -10,17 +10,12 @@ const bcrypt = require('bcryptjs');
 
 
 // CORS configuration
-// const corsOptions = {
-//     origin: 'https://laptop-ecom.vercel.app', // Allow requests from this origin
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     credentials: true, // Allow cookies to be sent
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-// };
-
-app.use(cors({
-    origin: 'https://laptop-ecom.vercel.app'
-}));
-
+const corsOptions = {
+    origin: 'https://laptop-ecom.vercel.app', // Allow requests from this origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Allow cookies to be sent
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
 const PORT = process.env.PORT || 5173;
 const jwtSecret = process.env.JWTSECRET;
@@ -60,7 +55,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/', 'index.html'));
 });
 
-app.post('/register', async (req, res) => {
+app.post('/register', cors(corsOptions), async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
