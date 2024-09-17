@@ -42,6 +42,10 @@ app.get('/api/data', (req, res) => {
     res.json({ message: 'This is an API response' });
 });
 
+// Handle the '/' route on the server by serving index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/', 'index.html'));
+});
  
 // Handle all other routes by serving the React app
 app.get('*', (req, res) => {
