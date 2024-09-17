@@ -19,6 +19,10 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
+app.use(cors({
+    origin: 'https://laptop-ecom.vercel.app'
+  }));
+
 
 // app.use((req, res, next) => {
 //     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173'); // Allow all origins (or specify specific origins)
