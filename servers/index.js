@@ -10,14 +10,16 @@ const bcrypt = require('bcryptjs');
 
 
 // CORS configuration
-const corsOptions = {
-    origin: 'https://laptop-ecom.vercel.app', // Allow requests from this origin
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Allow cookies to be sent
-    allowedHeaders: ['Content-Type', 'Authorization'],
-};
+// const corsOptions = {
+//     origin: 'https://laptop-ecom.vercel.app', // Allow requests from this origin
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true, // Allow cookies to be sent
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+// };
 
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: 'https://laptop-ecom.vercel.app'
+}));
 
 
 const PORT = process.env.PORT || 5173;
