@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, '../client/dist/')));
 
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://laptop-ecom.vercel.app'); // Allow all origins (or specify specific origins)
+    res.setHeader('Access-Control-Allow-Origin', 'https://laptop-ecom-yfz7.vercel.app/register'); // Allow all origins (or specify specific origins)
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Allow specific HTTP methods
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Allow specific headers
     next();
